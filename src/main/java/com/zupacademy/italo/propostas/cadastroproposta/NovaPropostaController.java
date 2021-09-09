@@ -18,6 +18,8 @@ public class NovaPropostaController {
 
     @PostMapping
     public ResponseEntity<?> cadastrarProposta(@RequestBody @Valid NovaPropostaRequest request, UriComponentsBuilder uriBuilder) {
+        if(propostaRepository.existsByDocumento(request.getDocumento())) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+
         Proposta proposta = request.toModel();
 
         propostaRepository.save(proposta);

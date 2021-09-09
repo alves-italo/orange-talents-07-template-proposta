@@ -34,4 +34,8 @@ public class NovaPropostaRequest {
     public Proposta toModel() {
         return new Proposta(this.documento, this.email, this.nome, this.endereco, this.salario);
     }
+
+    public String getDocumento() {
+        return this.documento;
+    }
 }
