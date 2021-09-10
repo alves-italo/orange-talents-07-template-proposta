@@ -11,17 +11,17 @@ import java.math.BigDecimal;
 public class NovaPropostaRequest {
     @NotBlank
     @CPFouCNPJ
-    private String documento;
+    private final String documento;
     @NotBlank
     @Email
-    private String email;
+    private final String email;
     @NotBlank
-    private String nome;
+    private final String nome;
     @NotBlank
-    private String endereco;
+    private final String endereco;
     @NotNull
     @PositiveOrZero
-    private BigDecimal salario;
+    private final BigDecimal salario;
 
     public NovaPropostaRequest(String documento, String email, String nome, String endereco, BigDecimal salario) {
         this.documento = documento;

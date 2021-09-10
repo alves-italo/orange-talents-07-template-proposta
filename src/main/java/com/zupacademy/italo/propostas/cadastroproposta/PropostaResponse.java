@@ -3,11 +3,12 @@ package com.zupacademy.italo.propostas.cadastroproposta;
 import java.math.BigDecimal;
 
 public class PropostaResponse {
-    private String documento;
-    private String email;
-    private String nome;
-    private String endereco;
-    private BigDecimal salario;
+    private final String documento;
+    private final String email;
+    private final String nome;
+    private final String endereco;
+    private final BigDecimal salario;
+    private final String status;
 
     public PropostaResponse(Proposta proposta) {
         this.documento = proposta.getDocumento();
@@ -15,6 +16,7 @@ public class PropostaResponse {
         this.nome = proposta.getNome();
         this.endereco = proposta.getEndereco();
         this.salario = proposta.getSalario();
+        this.status = proposta.getStatus().toString();
     }
 
     public String getDocumento() {
@@ -35,5 +37,9 @@ public class PropostaResponse {
 
     public BigDecimal getSalario() {
         return salario;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

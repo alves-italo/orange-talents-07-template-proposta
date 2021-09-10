@@ -16,13 +16,19 @@ public class NovaPropostaController {
     @Autowired
     private PropostaRepository propostaRepository;
 
+    @Autowired
+    private AvaliaSolicitanteService avaliaSolicitanteService;
+
     @PostMapping
     public ResponseEntity<?> cadastrarProposta(@RequestBody @Valid NovaPropostaRequest request, UriComponentsBuilder uriBuilder) {
-        if(propostaRepository.existsByDocumento(request.getDocumento())) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+        if (propostaRepository.existsByDocumento(request.getDocumento()))
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
 
         Proposta proposta = request.toModel();
 
         propostaRepository.save(proposta);
+
+        avaliaSolicitanteService.processaPropostas();
 
         URI location = uriBuilder.path("/propostas/{id}").buildAndExpand(proposta.getId()).toUri();
         return ResponseEntity.created(location).build();
