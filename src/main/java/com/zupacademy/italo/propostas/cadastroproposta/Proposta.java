@@ -85,5 +85,6 @@ public class Proposta {
 
     public void associaCartao(String numero) {
         this.numeroCartao = numero;
+        this.status = StatusProposta.CARTAO_GERADO;
     }
 }
