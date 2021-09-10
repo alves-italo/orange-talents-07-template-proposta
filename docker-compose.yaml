@@ -14,6 +14,8 @@ services:
       DATABASE_NAME: propostas
       DATABASE_USER: postgres
       DATABASE_PASSWORD: pass
+      KEYCLOAK_ISSUER_URI: http://keycloak:18080/auth/realms/propostas
+      KEYCLOAK_JWKS_URI: http://keycloak:18080/auth/realms/propostas/protocol/openid-connect/certs
     depends_on:
       - postgres_propostas
       - analise
