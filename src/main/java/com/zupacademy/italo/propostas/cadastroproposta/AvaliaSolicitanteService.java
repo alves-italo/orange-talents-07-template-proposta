@@ -1,7 +1,7 @@
 package com.zupacademy.italo.propostas.cadastroproposta;
 
-import com.zupacademy.italo.propostas.outrossistemas.analise.AnalisePropostaClient;
-import com.zupacademy.italo.propostas.outrossistemas.analise.AnalisePropostaRequest;
+import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoClient;
+import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoRequest;
 import com.zupacademy.italo.propostas.outrossistemas.analise.ResultadoSolicitacao;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +15,21 @@ public class AvaliaSolicitanteService {
     private PropostaRepository propostaRepository;
 
     @Autowired
-    private AnalisePropostaClient analisePropostaClient;
+    private AnaliseSolicitacaoClient analiseSolicitacaoClient;
 
     @Transactional
     public void processaPropostas() {
         propostaRepository.findAllByStatus(StatusProposta.AGUARDANDO_AVALIACAO).forEach(proposta -> {
             try {
-                AnalisePropostaRequest request = new AnalisePropostaRequest(proposta.getDocumento(), proposta.getNome(), proposta.getId().toString());
-                proposta.processaAnalise(analisePropostaClient.solicitaAnalise(request).getResultadoSolicitacao());
-                propostaRepository.save(proposta);
+                AnaliseSolicitacaoRequest request = new AnaliseSolicitacaoRequest(proposta.getDocumento(), proposta.getNome(), proposta.getId().toString());
+                proposta.processaAnalise(analiseSolicitacaoClient.solicitaAnalise(request).getResultadoSolicitacao());
             } catch (FeignException exception) {
                 if (exception.status() == HttpStatus.UNPROCESSABLE_ENTITY.value()) {
                     proposta.processaAnalise(ResultadoSolicitacao.COM_RESTRICAO);
                 }
             }
+
+            propostaRepository.save(proposta);
         });
     }
 }

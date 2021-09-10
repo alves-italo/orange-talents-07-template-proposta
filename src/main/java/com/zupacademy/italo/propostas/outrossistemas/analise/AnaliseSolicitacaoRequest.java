@@ -1,11 +1,11 @@
 package com.zupacademy.italo.propostas.outrossistemas.analise;
 
-public class AnalisePropostaRequest {
+public class AnaliseSolicitacaoRequest {
     private final String documento;
     private final String nome;
     private final String idProposta;
 
-    public AnalisePropostaRequest(String documento, String nome, String idProposta) {
+    public AnaliseSolicitacaoRequest(String documento, String nome, String idProposta) {
         this.documento = documento;
         this.nome = nome;
         this.idProposta = idProposta;

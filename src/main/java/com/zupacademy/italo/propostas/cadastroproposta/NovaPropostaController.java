@@ -25,7 +25,6 @@ public class NovaPropostaController {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
 
         Proposta proposta = request.toModel();
-
         propostaRepository.save(proposta);
 
         avaliaSolicitanteService.processaPropostas();
