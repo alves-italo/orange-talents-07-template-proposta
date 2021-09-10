@@ -1,5 +1,6 @@
 package com.zupacademy.italo.propostas.cadastroproposta;
 
+import com.zupacademy.italo.propostas.detalheproposta.PropostaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +32,5 @@ public class NovaPropostaController {
 
         URI location = uriBuilder.path("/propostas/{id}").buildAndExpand(proposta.getId()).toUri();
         return ResponseEntity.created(location).build();
-    }
-
-    @GetMapping("/{id}")
-    public PropostaResponse consultarProposta(@PathVariable("id") Long id) {
-        return propostaRepository.findById(id).map(PropostaResponse::new)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }

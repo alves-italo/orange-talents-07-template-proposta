@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "solicitacao-analise", url = "localhost:9999/api")
 public interface AnaliseSolicitacaoClient {
     @RequestMapping(method = RequestMethod.POST, value = "/solicitacao", produces = "application/json")
-    AnaliseSolicitacaoResponse solicitaAnalise(@RequestBody AnaliseSolicitacaoRequest request);
+    AnaliseSolicitacaoResponse solicitaAnalise(@RequestBody AnalisePropostaRequest request);
 }

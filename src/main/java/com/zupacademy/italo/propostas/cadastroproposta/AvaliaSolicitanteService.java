@@ -1,7 +1,7 @@
 package com.zupacademy.italo.propostas.cadastroproposta;
 
 import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoClient;
-import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoRequest;
+import com.zupacademy.italo.propostas.outrossistemas.analise.AnalisePropostaRequest;
 import com.zupacademy.italo.propostas.outrossistemas.analise.ResultadoSolicitacao;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class AvaliaSolicitanteService {
     public void processaPropostas() {
         propostaRepository.findAllByStatus(StatusProposta.AGUARDANDO_AVALIACAO).forEach(proposta -> {
             try {
-                AnaliseSolicitacaoRequest request = new AnaliseSolicitacaoRequest(proposta.getDocumento(), proposta.getNome(), proposta.getId().toString());
+                AnalisePropostaRequest request = new AnalisePropostaRequest(proposta);
                 proposta.processaAnalise(analiseSolicitacaoClient.solicitaAnalise(request).getResultadoSolicitacao());
             } catch (FeignException exception) {
                 if (exception.status() == HttpStatus.UNPROCESSABLE_ENTITY.value()) {

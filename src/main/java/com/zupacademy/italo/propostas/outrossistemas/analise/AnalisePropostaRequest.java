@@ -1,14 +1,16 @@
 package com.zupacademy.italo.propostas.outrossistemas.analise;
 
-public class AnaliseSolicitacaoRequest {
+import com.zupacademy.italo.propostas.cadastroproposta.Proposta;
+
+public class AnalisePropostaRequest {
     private final String documento;
     private final String nome;
     private final String idProposta;
 
-    public AnaliseSolicitacaoRequest(String documento, String nome, String idProposta) {
-        this.documento = documento;
-        this.nome = nome;
-        this.idProposta = idProposta;
+    public AnalisePropostaRequest(Proposta proposta) {
+        this.documento = proposta.getDocumento();
+        this.nome = proposta.getNome();
+        this.idProposta = proposta.getId().toString();
     }
 
     public String getDocumento() {

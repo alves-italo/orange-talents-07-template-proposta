@@ -28,6 +28,8 @@ public class Proposta {
 
     private StatusProposta status;
 
+    private String numeroCartao;
+
     @Deprecated
     public Proposta() {
     }
@@ -69,11 +71,19 @@ public class Proposta {
         return status;
     }
 
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
     public void processaAnalise(ResultadoSolicitacao resultado) {
         if (resultado.equals(ResultadoSolicitacao.SEM_RESTRICAO)) {
             this.status = StatusProposta.ELEGIVEL;
         } else if (resultado.equals(ResultadoSolicitacao.COM_RESTRICAO)) {
             this.status = StatusProposta.NAO_ELEGIVEL;
         }
+    }
+
+    public void associaCartao(String numero) {
+        this.numeroCartao = numero;
     }
 }
