@@ -1,4 +1,4 @@
-package com.zupacademy.italo.propostas.cadastrobiometria;
+package com.zupacademy.italo.propostas.biometrias;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

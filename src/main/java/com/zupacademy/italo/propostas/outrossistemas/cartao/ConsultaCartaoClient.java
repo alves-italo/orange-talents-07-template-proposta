@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "cartao-resource", url = "${servicos.cartao-resource}" )
 public interface ConsultaCartaoClient {
     @RequestMapping(method = RequestMethod.POST, value = "/cartoes", produces = "application/json")
-    CartaoNumeroResponse consultaNumero(@RequestBody AnalisePropostaRequest request);
+    CartaoResponse consultaNumero(@RequestBody AnalisePropostaRequest request);
 
     @RequestMapping(method = RequestMethod.GET, value = "/cartoes/{numeroCartao}", produces = "application/json")
-    CartaoNumeroResponse consultaNumero(@PathVariable("numeroCartao") String numeroCartao);
+    CartaoResponse consultaNumero(@PathVariable("numeroCartao") String numeroCartao);
 }

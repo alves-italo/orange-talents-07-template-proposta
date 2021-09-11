@@ -1,5 +1,8 @@
-package com.zupacademy.italo.propostas.cadastrobiometria;
+package com.zupacademy.italo.propostas.biometrias.cadastrobiometria;
 
+import com.zupacademy.italo.propostas.biometrias.Biometria;
+import com.zupacademy.italo.propostas.biometrias.BiometriaRepository;
+import com.zupacademy.italo.propostas.cartoes.VerificaCartaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

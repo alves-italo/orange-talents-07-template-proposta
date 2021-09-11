@@ -1,6 +1,6 @@
-package com.zupacademy.italo.propostas.detalheproposta;
+package com.zupacademy.italo.propostas.propostas.detalheproposta;
 
-import com.zupacademy.italo.propostas.cadastroproposta.Proposta;
+import com.zupacademy.italo.propostas.propostas.Proposta;
 
 import java.math.BigDecimal;
 

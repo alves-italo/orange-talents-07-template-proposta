@@ -1,6 +1,6 @@
-package com.zupacademy.italo.propostas.detalheproposta;
+package com.zupacademy.italo.propostas.propostas.detalheproposta;
 
-import com.zupacademy.italo.propostas.cadastroproposta.PropostaRepository;
+import com.zupacademy.italo.propostas.propostas.PropostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.zupacademy.italo.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

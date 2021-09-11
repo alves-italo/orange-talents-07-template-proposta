@@ -1,14 +1,13 @@
-package com.zupacademy.italo.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas;
 
+import com.zupacademy.italo.propostas.cartoes.Cartao;
 import com.zupacademy.italo.propostas.outrossistemas.analise.ResultadoSolicitacao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+
 
 @Entity
 public class Proposta {
@@ -28,7 +27,9 @@ public class Proposta {
 
     private StatusProposta status;
 
-    private String numeroCartao;
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+
+    private Cartao cartao;
 
     @Deprecated
     public Proposta() {
@@ -72,7 +73,7 @@ public class Proposta {
     }
 
     public String getNumeroCartao() {
-        return numeroCartao;
+        return this.cartao.getNumero();
     }
 
     public void processaAnalise(ResultadoSolicitacao resultado) {
@@ -83,8 +84,9 @@ public class Proposta {
         }
     }
 
-    public void associaCartao(String numero) {
-        this.numeroCartao = numero;
+    public void associaCartao(Cartao cartao) {
+        this.cartao = cartao;
+        cartao.setProposta(this);
         this.status = StatusProposta.CARTAO_GERADO;
     }
 }

@@ -1,6 +1,6 @@
 package com.zupacademy.italo.propostas.outrossistemas.analise;
 
-import com.zupacademy.italo.propostas.cadastroproposta.Proposta;
+import com.zupacademy.italo.propostas.propostas.Proposta;
 
 public class AnalisePropostaRequest {
     private final String documento;

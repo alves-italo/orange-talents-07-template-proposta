@@ -1,6 +1,6 @@
-package com.zupacademy.italo.propostas.detalhebiometria;
+package com.zupacademy.italo.propostas.biometrias.detalhebiometria;
 
-import com.zupacademy.italo.propostas.cadastrobiometria.BiometriaRepository;
+import com.zupacademy.italo.propostas.biometrias.BiometriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

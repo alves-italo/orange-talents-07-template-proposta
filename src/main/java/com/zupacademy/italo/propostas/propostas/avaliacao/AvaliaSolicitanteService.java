@@ -1,8 +1,10 @@
-package com.zupacademy.italo.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas.avaliacao;
 
 import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoClient;
 import com.zupacademy.italo.propostas.outrossistemas.analise.AnalisePropostaRequest;
 import com.zupacademy.italo.propostas.outrossistemas.analise.ResultadoSolicitacao;
+import com.zupacademy.italo.propostas.propostas.PropostaRepository;
+import com.zupacademy.italo.propostas.propostas.StatusProposta;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
-package com.zupacademy.italo.propostas.detalhebiometria;
+package com.zupacademy.italo.propostas.biometrias.detalhebiometria;
 
-import com.zupacademy.italo.propostas.cadastrobiometria.Biometria;
+import com.zupacademy.italo.propostas.biometrias.Biometria;
 
 public class BiometriaResponse {
     private String fingerprint;

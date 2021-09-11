@@ -1,6 +1,7 @@
-package com.zupacademy.italo.propostas.cadastrobiometria;
+package com.zupacademy.italo.propostas.biometrias.cadastrobiometria;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.zupacademy.italo.propostas.biometrias.Biometria;
 import com.zupacademy.italo.propostas.utilidades.Base64;
 
 import javax.validation.constraints.NotBlank;

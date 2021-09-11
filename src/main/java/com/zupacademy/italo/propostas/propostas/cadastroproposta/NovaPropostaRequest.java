@@ -1,5 +1,6 @@
-package com.zupacademy.italo.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas.cadastroproposta;
 
+import com.zupacademy.italo.propostas.propostas.Proposta;
 import com.zupacademy.italo.propostas.utilidades.CPFouCNPJ;
 
 import javax.validation.constraints.Email;

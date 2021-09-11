@@ -1,6 +1,8 @@
-package com.zupacademy.italo.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas.cadastroproposta;
 
-import com.zupacademy.italo.propostas.detalheproposta.PropostaResponse;
+import com.zupacademy.italo.propostas.propostas.avaliacao.AvaliaSolicitanteService;
+import com.zupacademy.italo.propostas.propostas.Proposta;
+import com.zupacademy.italo.propostas.propostas.PropostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
