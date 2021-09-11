@@ -39,4 +39,8 @@ public class Bloqueio {
     public boolean ativo() {
         return this.ativo;
     }
+
+    public String getUserAgentCliente() {
+        return userAgentCliente;
+    }
 }

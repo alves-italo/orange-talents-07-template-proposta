@@ -28,7 +28,6 @@ public class Proposta {
     private StatusProposta status;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-
     private Cartao cartao;
 
     @Deprecated

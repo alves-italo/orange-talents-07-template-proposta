@@ -11,7 +11,7 @@ public class PropostaResponse {
     private final String endereco;
     private final BigDecimal salario;
     private final String status;
-    private final String numeroCartao;
+    private String numeroCartao;
 
     public PropostaResponse(Proposta proposta) {
         this.documento = proposta.getDocumento();
@@ -20,7 +20,6 @@ public class PropostaResponse {
         this.endereco = proposta.getEndereco();
         this.salario = proposta.getSalario();
         this.status = proposta.getStatus().toString();
-        this.numeroCartao = proposta.getNumeroCartao();
     }
 
     public String getDocumento() {
@@ -49,5 +48,9 @@ public class PropostaResponse {
 
     public String getNumeroCartao() {
         return numeroCartao;
+    }
+
+    public void setNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
     }
 }

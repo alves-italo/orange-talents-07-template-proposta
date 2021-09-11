@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Cartao {
@@ -26,8 +27,10 @@ public class Cartao {
 
     private Long idProposta;
 
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private final List<Bloqueio> bloqueios = new ArrayList<>();
+
+    private EstadoCartao estado;
 
     @Deprecated
     public Cartao() {
@@ -38,6 +41,7 @@ public class Cartao {
         this.titular = titular;
         this.emitidoEm = emitidoEm;
         this.limite = limite;
+        this.estado = EstadoCartao.ATIVO;
     }
 
     public void setProposta(Proposta proposta) {
@@ -48,15 +52,25 @@ public class Cartao {
         return numero;
     }
 
-    public boolean ativo() {
-        return this.bloqueios.stream().noneMatch(Bloqueio::ativo);
+    public EstadoCartao getEstado() {
+        return this.estado;
     }
 
     public void configuraBloqueio(String ipCliente, String userAgentCliente) {
-        Assert.isTrue(this.ativo(), "Cartão já está bloqueado");
+        Assert.isTrue(this.bloqueios.stream().noneMatch(Bloqueio::ativo), "[BUG] Há mais de um bloqueio ativo no cartão");
+        Assert.isTrue(this.estado.equals(EstadoCartao.ATIVO), "Cartão já está bloqueado");
 
         Bloqueio bloqueio = new Bloqueio(ipCliente, userAgentCliente, this);
 
         this.bloqueios.add(bloqueio);
+        this.estado = EstadoCartao.AGUARDANDO_BLOQUEIO;
+    }
+
+    public Bloqueio getBloqueioAtivo() {
+        return this.bloqueios.stream().filter(Bloqueio::ativo).collect(Collectors.toList()).get(0);
+    }
+
+    public void confirmaBloqueio() {
+        this.estado = EstadoCartao.BLOQUEADO;
     }
 }

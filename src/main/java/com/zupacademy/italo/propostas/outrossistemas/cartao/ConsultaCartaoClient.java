@@ -14,4 +14,7 @@ public interface ConsultaCartaoClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/cartoes/{numeroCartao}", produces = "application/json")
     CartaoResponse consultaNumero(@PathVariable("numeroCartao") String numeroCartao);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cartoes/{numeroCartao}/bloqueios", produces = "application/json")
+    BloqueioResponse notificaBloqueio(@PathVariable("numeroCartao") String numeroCartao, @RequestBody BloqueioRequest bloqueioRequest);
 }
