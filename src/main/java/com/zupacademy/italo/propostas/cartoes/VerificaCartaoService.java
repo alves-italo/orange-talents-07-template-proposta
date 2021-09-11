@@ -1,7 +1,7 @@
 package com.zupacademy.italo.propostas.cartoes;
 
 import com.zupacademy.italo.propostas.outrossistemas.cartao.CartaoResponse;
-import com.zupacademy.italo.propostas.outrossistemas.cartao.ConsultaCartaoClient;
+import com.zupacademy.italo.propostas.outrossistemas.cartao.CartaoLegadoClient;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class VerificaCartaoService {
     @Autowired
-    ConsultaCartaoClient consultaCartaoClient;
+    CartaoLegadoClient cartaoLegadoClient;
 
     public boolean existe(String numeroCartao) {
         try {
-            CartaoResponse cartaoResponse = consultaCartaoClient.consultaNumero(numeroCartao);
+            CartaoResponse cartaoResponse = cartaoLegadoClient.consultaNumero(numeroCartao);
             return true;
         } catch (FeignException exception) {
             return false;
