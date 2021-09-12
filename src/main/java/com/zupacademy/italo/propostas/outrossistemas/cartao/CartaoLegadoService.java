@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CartaoLegadoService {
-    private CartaoRepository cartaoRepository;
-    private PropostaRepository propostaRepository;
-    private CartaoLegadoClient cartaoLegadoClient;
+    private final CartaoRepository cartaoRepository;
+    private final PropostaRepository propostaRepository;
+    private final CartaoLegadoClient cartaoLegadoClient;
 
     public CartaoLegadoService(CartaoRepository cartaoRepository, PropostaRepository propostaRepository, CartaoLegadoClient cartaoLegadoClient) {
         this.cartaoRepository = cartaoRepository;
@@ -25,7 +25,7 @@ public class CartaoLegadoService {
     public void notificaBloqueios() {
         cartaoRepository.findAllByEstado(EstadoCartao.AGUARDANDO_BLOQUEIO).forEach(cartao -> {
             try {
-                BloqueioResponse response = cartaoLegadoClient.notificaBloqueio(cartao.getNumero(), new BloqueioRequest(cartao.getBloqueioAtivo().getUserAgentCliente()));
+                RespostaApi response = cartaoLegadoClient.notificaBloqueio(cartao.getNumero(), new BloqueioLegadoRequest(cartao.getBloqueioAtivo().getUserAgentCliente()));
                 cartao.confirmaBloqueio();
                 cartaoRepository.save(cartao);
                 // Logger do bloqueio

@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 
 public class CartaoResponse {
     @NotBlank
-    private String id;
+    private final String id;
     @NotBlank
-    private String titular;
-    private LocalDateTime emitidoEm;
+    private final String titular;
+    private final LocalDateTime emitidoEm;
     @NotNull
-    private BigDecimal limite;
+    private final BigDecimal limite;
 
     public CartaoResponse(String id, String titular, LocalDateTime emitidoEm, BigDecimal limite) {
         this.id = id;

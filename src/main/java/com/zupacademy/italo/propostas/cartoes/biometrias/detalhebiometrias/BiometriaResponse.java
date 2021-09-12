@@ -1,10 +1,10 @@
-package com.zupacademy.italo.propostas.biometrias.detalhebiometria;
+package com.zupacademy.italo.propostas.cartoes.biometrias.detalhebiometrias;
 
-import com.zupacademy.italo.propostas.biometrias.Biometria;
+import com.zupacademy.italo.propostas.cartoes.biometrias.Biometria;
 
 public class BiometriaResponse {
-    private String fingerprint;
-    private String numeroCartao;
+    private final String fingerprint;
+    private final String numeroCartao;
 
     public BiometriaResponse(Biometria biometria) {
         this.fingerprint = biometria.getFingerprint();

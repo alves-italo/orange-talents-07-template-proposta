@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(value = "cartao-resource", url = "${servicos.cartao.host}" )
+@FeignClient(value = "cartao-resource", url = "${servicos.cartao.host}")
 public interface CartaoLegadoClient {
     @RequestMapping(method = RequestMethod.POST, value = "/cartoes", produces = "application/json")
     CartaoResponse consultaNumero(@RequestBody AnalisePropostaRequest request);
@@ -16,5 +16,8 @@ public interface CartaoLegadoClient {
     CartaoResponse consultaNumero(@PathVariable("numeroCartao") String numeroCartao);
 
     @RequestMapping(method = RequestMethod.POST, value = "/cartoes/{numeroCartao}/bloqueios", produces = "application/json")
-    BloqueioResponse notificaBloqueio(@PathVariable("numeroCartao") String numeroCartao, @RequestBody BloqueioRequest bloqueioRequest);
+    RespostaApi notificaBloqueio(@PathVariable("numeroCartao") String numeroCartao, @RequestBody BloqueioLegadoRequest request);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cartoes/{numeroCartao}/avisos", produces = "application/json")
+    RespostaApi notificaAvisoViagem(@PathVariable("numeroCartao") String numeroCartao, @RequestBody AvisoLegadoRequest request);
 }

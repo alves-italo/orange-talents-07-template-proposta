@@ -1,4 +1,4 @@
-package com.zupacademy.italo.propostas.propostas.detalheproposta;
+package com.zupacademy.italo.propostas.propostas.detalhepropostas;
 
 import com.zupacademy.italo.propostas.propostas.Proposta;
 

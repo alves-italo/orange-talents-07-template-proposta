@@ -1,12 +1,15 @@
-package com.zupacademy.italo.propostas.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas.cadastropropostas;
 
-import com.zupacademy.italo.propostas.propostas.avaliacao.AvaliaSolicitanteService;
 import com.zupacademy.italo.propostas.propostas.Proposta;
 import com.zupacademy.italo.propostas.propostas.PropostaRepository;
+import com.zupacademy.italo.propostas.propostas.analises.AnaliseSolicitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,7 +23,7 @@ public class NovaPropostaController {
     private PropostaRepository propostaRepository;
 
     @Autowired
-    private AvaliaSolicitanteService avaliaSolicitanteService;
+    private AnaliseSolicitanteService analiseSolicitanteService;
 
     @PostMapping
     public ResponseEntity<?> cadastrarProposta(@RequestBody @Valid NovaPropostaRequest request, UriComponentsBuilder uriBuilder) {
@@ -30,7 +33,7 @@ public class NovaPropostaController {
         Proposta proposta = request.toModel();
         propostaRepository.save(proposta);
 
-        avaliaSolicitanteService.processaPropostas();
+        analiseSolicitanteService.processaPropostas();
 
         URI location = uriBuilder.path("/propostas/{id}").buildAndExpand(proposta.getId()).toUri();
         return ResponseEntity.created(location).build();

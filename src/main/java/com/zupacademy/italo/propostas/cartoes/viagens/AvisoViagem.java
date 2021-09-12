@@ -41,4 +41,12 @@ public class AvisoViagem {
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public LocalDate getValidoAte() {
+        return validoAte;
+    }
 }

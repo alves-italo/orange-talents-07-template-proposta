@@ -1,4 +1,4 @@
-package com.zupacademy.italo.propostas.propostas.detalheproposta;
+package com.zupacademy.italo.propostas.propostas.detalhepropostas;
 
 import com.zupacademy.italo.propostas.propostas.Proposta;
 import com.zupacademy.italo.propostas.propostas.PropostaRepository;
@@ -23,12 +23,12 @@ public class DetalhePropostaController {
     public PropostaResponse consultarProposta(@PathVariable("id") Long id) {
         Optional<Proposta> propostaOptional = propostaRepository.findById(id);
 
-        if(propostaOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        if (propostaOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         Proposta proposta = propostaOptional.get();
         PropostaResponse propostaResponse = new PropostaResponse(proposta);
 
-        if(proposta.getStatus().equals(StatusProposta.CARTAO_GERADO))
+        if (proposta.getStatus().equals(StatusProposta.CARTAO_GERADO))
             propostaResponse.setNumeroCartao(proposta.getNumeroCartao());
 
         return propostaResponse;

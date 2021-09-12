@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 
-public class BloqueioResponse {
+public class RespostaApi {
     @NotBlank
-    private String resultado;
+    private final String resultado;
 
-    public BloqueioResponse(@JsonProperty("resultado") String resultado) {
+    public RespostaApi(@JsonProperty("resultado") String resultado) {
         this.resultado = resultado;
     }
 

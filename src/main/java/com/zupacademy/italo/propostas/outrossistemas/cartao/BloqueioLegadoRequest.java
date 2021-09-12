@@ -2,11 +2,11 @@ package com.zupacademy.italo.propostas.outrossistemas.cartao;
 
 import javax.validation.constraints.NotBlank;
 
-public class BloqueioRequest {
+public class BloqueioLegadoRequest {
     @NotBlank
-    private String sistemaResponsavel;
+    private final String sistemaResponsavel;
 
-    public BloqueioRequest(String sistemaResponsavel) {
+    public BloqueioLegadoRequest(String sistemaResponsavel) {
         this.sistemaResponsavel = sistemaResponsavel;
     }
 

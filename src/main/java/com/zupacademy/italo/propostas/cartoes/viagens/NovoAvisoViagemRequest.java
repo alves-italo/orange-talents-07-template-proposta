@@ -9,10 +9,10 @@ import java.time.LocalDate;
 
 public class NovoAvisoViagemRequest {
     @NotBlank
-    private String destino;
+    private final String destino;
     @Future
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate dataRetorno;
+    private final LocalDate dataRetorno;
 
     public NovoAvisoViagemRequest(String destino, @JsonProperty("dataRetorno") LocalDate dataRetorno) {
         this.destino = destino;

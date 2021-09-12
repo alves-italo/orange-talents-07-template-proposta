@@ -1,4 +1,4 @@
-package com.zupacademy.italo.propostas.propostas.cadastroproposta;
+package com.zupacademy.italo.propostas.propostas.cadastropropostas;
 
 import com.zupacademy.italo.propostas.propostas.Proposta;
 import com.zupacademy.italo.propostas.utilidades.CPFouCNPJ;

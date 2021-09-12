@@ -1,5 +1,6 @@
 package com.zupacademy.italo.propostas.cartoes;
 
+import com.zupacademy.italo.propostas.cartoes.biometrias.Biometria;
 import com.zupacademy.italo.propostas.cartoes.bloqueios.Bloqueio;
 import com.zupacademy.italo.propostas.cartoes.viagens.AvisoViagem;
 import com.zupacademy.italo.propostas.propostas.Proposta;
@@ -10,30 +11,29 @@ import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
 public class Cartao {
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private final List<Bloqueio> bloqueios = new ArrayList<>();
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private final List<AvisoViagem> avisosViagem = new ArrayList<>();
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private final Set<Biometria> biometrias = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotBlank
     private String numero;
     @NotBlank
     private String titular;
     private LocalDateTime emitidoEm;
     private BigDecimal limite;
-
     private Long idProposta;
-
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private final List<Bloqueio> bloqueios = new ArrayList<>();
-
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
-    private List<AvisoViagem> avisosViagem = new ArrayList<>();
-
     private EstadoCartao estado;
 
     @Deprecated
@@ -81,5 +81,10 @@ public class Cartao {
     public void adicionaAvisoViagem(AvisoViagem avisoViagem) {
         this.avisosViagem.add(avisoViagem);
         avisoViagem.setCartao(this);
+    }
+
+    public void associaBiometria(Biometria biometria) {
+        this.biometrias.add(biometria);
+        biometria.setCartao(this);
     }
 }

@@ -1,7 +1,7 @@
-package com.zupacademy.italo.propostas.propostas.avaliacao;
+package com.zupacademy.italo.propostas.propostas.analises;
 
-import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoClient;
 import com.zupacademy.italo.propostas.outrossistemas.analise.AnalisePropostaRequest;
+import com.zupacademy.italo.propostas.outrossistemas.analise.AnaliseSolicitacaoClient;
 import com.zupacademy.italo.propostas.outrossistemas.analise.ResultadoSolicitacao;
 import com.zupacademy.italo.propostas.propostas.PropostaRepository;
 import com.zupacademy.italo.propostas.propostas.StatusProposta;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class AvaliaSolicitanteService {
+public class AnaliseSolicitanteService {
     @Autowired
     private PropostaRepository propostaRepository;
 
