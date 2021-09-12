@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -21,7 +22,7 @@ public class NovaBiometriaController {
     private VerificaCartaoService verificaCartaoService;
 
     @PostMapping("/cartoes/{numeroCartao}/biometrias")
-    public ResponseEntity<?> cadastraBiometria(@PathVariable("numeroCartao") String numeroCartao, @RequestBody NovaBiometriaRequest request, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<?> cadastraBiometria(@PathVariable("numeroCartao") String numeroCartao, @RequestBody @Valid NovaBiometriaRequest request, UriComponentsBuilder uriBuilder) {
         if(!verificaCartaoService.existe(numeroCartao)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         Biometria biometria = request.toModel(numeroCartao);

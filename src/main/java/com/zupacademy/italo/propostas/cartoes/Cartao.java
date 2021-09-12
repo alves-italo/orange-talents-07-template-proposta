@@ -1,6 +1,7 @@
 package com.zupacademy.italo.propostas.cartoes;
 
 import com.zupacademy.italo.propostas.cartoes.bloqueios.Bloqueio;
+import com.zupacademy.italo.propostas.cartoes.viagens.AvisoViagem;
 import com.zupacademy.italo.propostas.propostas.Proposta;
 import org.springframework.util.Assert;
 
@@ -29,6 +30,9 @@ public class Cartao {
 
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private final List<Bloqueio> bloqueios = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private List<AvisoViagem> avisosViagem = new ArrayList<>();
 
     private EstadoCartao estado;
 
@@ -72,5 +76,10 @@ public class Cartao {
 
     public void confirmaBloqueio() {
         this.estado = EstadoCartao.BLOQUEADO;
+    }
+
+    public void adicionaAvisoViagem(AvisoViagem avisoViagem) {
+        this.avisosViagem.add(avisoViagem);
+        avisoViagem.setCartao(this);
     }
 }

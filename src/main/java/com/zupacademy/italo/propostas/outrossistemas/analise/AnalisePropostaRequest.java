@@ -2,9 +2,14 @@ package com.zupacademy.italo.propostas.outrossistemas.analise;
 
 import com.zupacademy.italo.propostas.propostas.Proposta;
 
+import javax.validation.constraints.NotBlank;
+
 public class AnalisePropostaRequest {
+    @NotBlank
     private final String documento;
+    @NotBlank
     private final String nome;
+    @NotBlank
     private final String idProposta;
 
     public AnalisePropostaRequest(Proposta proposta) {

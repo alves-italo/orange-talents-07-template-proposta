@@ -3,6 +3,7 @@ package com.zupacademy.italo.propostas.outrossistemas.cartao;
 import com.zupacademy.italo.propostas.cartoes.Cartao;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class CartaoResponse {
     @NotBlank
     private String titular;
     private LocalDateTime emitidoEm;
+    @NotNull
     private BigDecimal limite;
 
     public CartaoResponse(String id, String titular, LocalDateTime emitidoEm, BigDecimal limite) {
