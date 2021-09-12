@@ -1,6 +1,7 @@
 package com.zupacademy.italo.propostas.cartoes.carteiras.detalhecarteiras;
 
 import com.zupacademy.italo.propostas.cartoes.carteiras.Carteira;
+import com.zupacademy.italo.propostas.cartoes.carteiras.ServicoCarteira;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,7 +11,7 @@ public class CarteiraResponse {
     @Email
     private final String email;
     @NotBlank
-    private final String carteira;
+    private final ServicoCarteira carteira;
 
     public CarteiraResponse(Carteira carteira) {
         this.email = carteira.getEmail();
@@ -21,7 +22,7 @@ public class CarteiraResponse {
         return email;
     }
 
-    public String getCarteira() {
+    public ServicoCarteira getCarteira() {
         return carteira;
     }
 }

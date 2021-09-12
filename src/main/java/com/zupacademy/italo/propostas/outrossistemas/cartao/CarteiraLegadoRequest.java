@@ -1,6 +1,7 @@
 package com.zupacademy.italo.propostas.outrossistemas.cartao;
 
 import com.zupacademy.italo.propostas.cartoes.carteiras.Carteira;
+import com.zupacademy.italo.propostas.cartoes.carteiras.ServicoCarteira;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,7 +15,7 @@ public class CarteiraLegadoRequest {
 
     public CarteiraLegadoRequest(Carteira carteira) {
         this.email = carteira.getEmail();
-        this.carteira = carteira.getServico();
+        this.carteira = carteira.getServico().toString();
     }
 
     public String getEmail() {

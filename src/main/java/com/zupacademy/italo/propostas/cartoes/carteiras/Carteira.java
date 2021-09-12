@@ -15,7 +15,7 @@ public class Carteira {
     @NotBlank
     private String email;
 
-    private String servico;
+    private ServicoCarteira servico;
 
     @ManyToOne
     private Cartao cartao;
@@ -24,7 +24,7 @@ public class Carteira {
     public Carteira() {
     }
 
-    public Carteira(String email, String servico) {
+    public Carteira(String email, ServicoCarteira servico) {
         this.email = email;
         this.servico = servico;
     }
@@ -41,7 +41,7 @@ public class Carteira {
         return email;
     }
 
-    public String getServico() {
+    public ServicoCarteira getServico() {
         return servico;
     }
 
