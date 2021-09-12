@@ -2,6 +2,7 @@ package com.zupacademy.italo.propostas.cartoes;
 
 import com.zupacademy.italo.propostas.cartoes.biometrias.Biometria;
 import com.zupacademy.italo.propostas.cartoes.bloqueios.Bloqueio;
+import com.zupacademy.italo.propostas.cartoes.carteiras.Carteira;
 import com.zupacademy.italo.propostas.cartoes.viagens.AvisoViagem;
 import com.zupacademy.italo.propostas.propostas.Proposta;
 import org.springframework.util.Assert;
@@ -18,12 +19,6 @@ import java.util.stream.Collectors;
 
 @Entity
 public class Cartao {
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private final List<Bloqueio> bloqueios = new ArrayList<>();
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
-    private final List<AvisoViagem> avisosViagem = new ArrayList<>();
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
-    private final Set<Biometria> biometrias = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +30,18 @@ public class Cartao {
     private BigDecimal limite;
     private Long idProposta;
     private EstadoCartao estado;
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private final List<Bloqueio> bloqueios = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private final List<AvisoViagem> avisosViagem = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private final Set<Biometria> biometrias = new HashSet<>();
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private final Set<Carteira> carteiras = new HashSet<>();
 
     @Deprecated
     public Cartao() {
@@ -86,5 +93,16 @@ public class Cartao {
     public void associaBiometria(Biometria biometria) {
         this.biometrias.add(biometria);
         biometria.setCartao(this);
+    }
+
+    public void associaCarteira(Carteira carteira) {
+        Assert.isTrue(!this.possuiCarteira(carteira), "[BUG] Cartão já possui a carteira.");
+
+        this.carteiras.add(carteira);
+        carteira.setCartao(this);
+    }
+
+    public boolean possuiCarteira(Carteira carteira) {
+        return this.carteiras.contains(carteira);
     }
 }

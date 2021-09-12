@@ -16,6 +16,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class NovaBiometriaController {
@@ -31,7 +33,13 @@ public class NovaBiometriaController {
         cartao.associaBiometria(biometria);
         cartaoRepository.save(cartao);
 
-        URI location = uriBuilder.path("/cartoes/{numeroCartao}/biometrias/{id}").buildAndExpand(cartao.getNumero(), biometria.getId()).toUri();
+        Map<String, Object> pathVariableMap = new HashMap<>();
+        pathVariableMap.put("numeroCartao", numeroCartao);
+        pathVariableMap.put("id", biometria.getId());
+        URI location = uriBuilder.path("/cartoes/{numeroCartao}/biometrias/{id}")
+                .buildAndExpand(pathVariableMap)
+                .toUri();
+
         return ResponseEntity.created(location).build();
     }
 

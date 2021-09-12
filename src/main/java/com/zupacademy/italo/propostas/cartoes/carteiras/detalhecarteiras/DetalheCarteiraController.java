@@ -1,7 +1,7 @@
-package com.zupacademy.italo.propostas.cartoes.biometrias.detalhebiometrias;
+package com.zupacademy.italo.propostas.cartoes.carteiras.detalhecarteiras;
 
 import com.zupacademy.italo.propostas.cartoes.Cartao;
-import com.zupacademy.italo.propostas.cartoes.biometrias.Biometria;
+import com.zupacademy.italo.propostas.cartoes.carteiras.Carteira;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,20 +14,20 @@ import javax.persistence.PersistenceContext;
 
 @RestController
 @RequestMapping("/cartoes")
-public class DetalheBiometriaController {
+public class DetalheCarteiraController {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @GetMapping(value = "/{numeroCartao}/biometrias/{id}")
-    public BiometriaResponse mostrarBiometria(@PathVariable("numeroCartao") String numeroCartao, @PathVariable("id") Long id) {
+    @GetMapping(value = "/{numeroCartao}/carteiras/{id}")
+    public CarteiraResponse mostrarCarteira(@PathVariable("numeroCartao") String numeroCartao, @PathVariable("id") Long id) {
         if (entityManager.createQuery("SELECT c FROM Cartao c WHERE c.numero = :numeroCartao", Cartao.class)
                 .setParameter("numeroCartao", numeroCartao)
                 .getResultList()
                 .isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        Biometria biometria = entityManager.find(Biometria.class, id);
-        if (biometria == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        Carteira carteira = entityManager.find(Carteira.class, id);
+        if (carteira == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
-        return new BiometriaResponse(biometria);
+        return new CarteiraResponse(carteira);
     }
 }

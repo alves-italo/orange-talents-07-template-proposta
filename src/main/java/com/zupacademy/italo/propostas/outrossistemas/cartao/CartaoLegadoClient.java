@@ -20,4 +20,7 @@ public interface CartaoLegadoClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/cartoes/{numeroCartao}/avisos", produces = "application/json")
     RespostaApi notificaAvisoViagem(@PathVariable("numeroCartao") String numeroCartao, @RequestBody AvisoLegadoRequest request);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cartoes/{numeroCartao}/carteiras", produces = "application/json")
+    RespostaApi associaCarteira(@PathVariable("numeroCartao") String numeroCartao, @RequestBody CarteiraLegadoRequest carteiraLegadoRequest);
 }
