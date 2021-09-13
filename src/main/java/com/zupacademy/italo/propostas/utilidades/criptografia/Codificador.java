@@ -10,10 +10,12 @@ import java.security.NoSuchAlgorithmException;
 public class Codificador {
     private String chave;
     private String salt;
+    private TextEncryptor encryptor;
 
     public Codificador() {
         this.chave = System.getenv().get("CODIFICADOR_CHAVE");
-        this.chave = System.getenv().get("CODIFICADOR_SALT");
+        this.salt = System.getenv().get("CODIFICADOR_SALT");
+        this.encryptor = Encryptors.text(this.chave, this.salt);
     }
 
     public static Codificador getCodificador() {
@@ -21,11 +23,11 @@ public class Codificador {
     }
 
     public String codificar(String dado) {
-        return this.encryptor().encrypt(dado);
+        return this.encryptor.encrypt(dado);
     }
 
     public String decodificar(String dado) {
-        return this.encryptor().decrypt(dado);
+        return this.encryptor.decrypt(dado);
     }
 
     public String hash(String dado) {
@@ -38,9 +40,5 @@ public class Codificador {
         }
 
         return new BigInteger(1, messageDigest.digest(dado.getBytes())).toString(16);
-    }
-
-    public TextEncryptor encryptor() {
-        return Encryptors.text(this.chave, this.salt);
     }
 }
