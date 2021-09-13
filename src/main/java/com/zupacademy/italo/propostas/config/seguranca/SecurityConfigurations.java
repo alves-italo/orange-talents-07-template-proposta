@@ -22,7 +22,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                     .anyRequest().authenticated();
         }).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-
+        http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
