@@ -10,8 +10,8 @@ import static java.lang.annotation.ElementType.FIELD;
 
 @Target({FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ValorUnicoValidator.class)
-public @interface ValorUnico {
+@Constraint(validatedBy = ValorUnicoHashValidator.class)
+public @interface ValorUnicoHash {
     String message() default "Recurso não encontrado";
 
     Class<?>[] groups() default {};

@@ -2,6 +2,7 @@ package com.zupacademy.italo.propostas.propostas.cadastropropostas;
 
 import com.zupacademy.italo.propostas.propostas.Proposta;
 import com.zupacademy.italo.propostas.utilidades.CPFouCNPJ;
+import com.zupacademy.italo.propostas.utilidades.ValorUnicoHash;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 public class NovaPropostaRequest {
     @NotBlank
     @CPFouCNPJ
+    @ValorUnicoHash(target = Proposta.class, field = "documentoHash")
     private final String documento;
     @NotBlank
     @Email

@@ -19,6 +19,8 @@ services:
       JAEGER_ENABLED: "true"
       JAEGER_ENDPOINT: http://jaeger:14268/api/
       JAEGER_SAMPLER: 1
+      CODIFICADOR_CHAVE: nVRqkkI6cCIGAiba7sK0rpFXPuJiJB7q
+      CODIFICADOR_SALT: 1337
     depends_on:
       - postgres_propostas
       - analise

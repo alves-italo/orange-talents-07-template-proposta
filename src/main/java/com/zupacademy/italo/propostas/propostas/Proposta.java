@@ -2,6 +2,7 @@ package com.zupacademy.italo.propostas.propostas;
 
 import com.zupacademy.italo.propostas.cartoes.Cartao;
 import com.zupacademy.italo.propostas.outrossistemas.analise.ResultadoSolicitacao;
+import com.zupacademy.italo.propostas.utilidades.criptografia.Codificador;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +17,7 @@ public class Proposta {
     private Long id;
     @NotBlank
     private String documento;
+    private String documentoHash;
     @NotBlank
     private String email;
     @NotBlank
@@ -35,7 +37,9 @@ public class Proposta {
     }
 
     public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
-        this.documento = documento;
+        Codificador codificador = Codificador.getCodificador();
+        this.documento = codificador.codificar(documento);
+        this.documentoHash = codificador.hash(documento);
         this.email = email;
         this.nome = nome;
         this.endereco = endereco;
@@ -48,7 +52,12 @@ public class Proposta {
     }
 
     public String getDocumento() {
-        return documento;
+        Codificador codificador = Codificador.getCodificador();
+        return codificador.decodificar(documento);
+    }
+
+    public String getDocumentoHash() {
+        return documentoHash;
     }
 
     public String getEmail() {
